@@ -77,7 +77,7 @@ console.log(getComputedStyle(msg).color);
 msg.style.height =
   Number.parseFloat(getComputedStyle(msg).height, 10) + 30 + 'px';
 
-document.documentElement.style.setProperty('--color-primary', 'orangered');
+// document.documentElement.style.setProperty('--color-primary', 'orangered');
 
 // Atributos
 const logo = document.querySelector('.nav__logo');
@@ -134,3 +134,21 @@ btnScrollTo.addEventListener('click', function (e) {
   // Maneira nova
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+// Procando a função uma única vez
+const alertH1 = function (e) {
+  alert('addEventListener: Great! You are reading the heading');
+};
+
+// Tipos de eventos e event handlers
+const h1 = document.querySelector('h1');
+h1.addEventListener('mouseenter', alertH1);
+
+setTimeout(() => {
+  h1.removeEventListener('mouseenter', alertH1);
+}, 3000);
+
+// Jeito antigo
+// h1.onmouseenter = function (e) {
+//   alert('addEventListener: Great! You are reading the heading');
+// };
