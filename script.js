@@ -66,3 +66,40 @@ document
   .addEventListener('click', function (e) {
     msg.remove();
   });
+
+// Estilos
+msg.style.backgroundColor = '#37383d';
+msg.style.width = '120%';
+
+console.log(msg.style.backgroundColor);
+console.log(getComputedStyle(msg).color);
+
+msg.style.height =
+  Number.parseFloat(getComputedStyle(msg).height, 10) + 30 + 'px';
+
+document.documentElement.style.setProperty('--color-primary', 'orangered');
+
+// Atributos
+const logo = document.querySelector('.nav__logo');
+console.log(logo.src);
+console.log(logo.alt);
+console.log(logo.className);
+
+logo.alt = 'Logo minimalista';
+
+console.log(logo.getAttribute('designer'));
+logo.setAttribute('company', 'bankist');
+console.log(logo.getAttribute('src'));
+
+const link = document.querySelector('.nav__link--btn');
+console.log(link.href);
+console.log(link.getAttribute('href'));
+
+// Atributos data
+console.log(logo.dataset.versionNumber);
+
+// Classes
+logo.classList.add('c');
+logo.classList.remove('c');
+logo.classList.toggle('c');
+logo.classList.contains('c');
