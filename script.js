@@ -161,3 +161,19 @@ const randomColor = () =>
 // document.querySelector('.nav').addEventListener('click', function (e) {
 //   this.style.backgroundColor = randomColor();
 // });
+
+// DOM Transversing
+const h1 = document.querySelector('h1');
+// Selecionando filhos
+console.log(h1.querySelectorAll('.highlight'));
+console.log(h1.childNodes);
+console.log(h1.children);
+h1.firstElementChild.style.color = 'white';
+
+// Selecionando pais
+console.log(h1.parentElement);
+// h1.closest('.header').style.background = 'var(--gradient-secondary)';
+
+// Selecionando irmãos
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
