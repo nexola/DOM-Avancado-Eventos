@@ -7,6 +7,8 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
 
 const openModal = function () {
   modal.classList.remove('hidden');
@@ -29,6 +31,19 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+// Navegação da página - delegação de evento
+// 1. adicionar o event listener
+// 2. determinar qual elemento originou o evento
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+///////////////////////////////
 // AULA
 // Selectionando elementos
 console.log(document.documentElement);
@@ -105,50 +120,44 @@ logo.classList.toggle('c');
 logo.classList.contains('c');
 
 // Scroll suave
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
-
 btnScrollTo.addEventListener('click', function (e) {
-  const s1coords = section1.getBoundingClientRect();
-  console.log(s1coords);
-
-  console.log(e.target.getBoundingClientRect());
-
-  console.log('Posição atual do scroll (X/Y)', window.scrollX, window.scrollY);
-
-  console.log(
-    'height/width viewport',
-    document.documentElement.clientHeight,
-    document.documentElement.clientWidth
-  );
-
-  // Scrollando
-  // window.scrollTo(s1coords.left, s1coords.top + window.scrollY + 120);
-  // Maneira antiga
-  // window.scrollTo({
-  //   left: s1coords.left + window.scrollX,
-  //   top: s1coords.top + window.scrollY + 120,
-  //   behavior: 'smooth',
-  // });
-
-  // Maneira nova
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
 // Procando a função uma única vez
-const alertH1 = function (e) {
-  alert('addEventListener: Great! You are reading the heading');
-};
+// const alertH1 = function (e) {
+//   alert('addEventListener: Great! You are reading the heading');
+// };
 
 // Tipos de eventos e event handlers
-const h1 = document.querySelector('h1');
-h1.addEventListener('mouseenter', alertH1);
+// const h1 = document.querySelector('h1');
+// h1.addEventListener('mouseenter', alertH1);
 
-setTimeout(() => {
-  h1.removeEventListener('mouseenter', alertH1);
-}, 3000);
+// setTimeout(() => {
+//   h1.removeEventListener('mouseenter', alertH1);
+// }, 3000);
 
 // Jeito antigo
 // h1.onmouseenter = function (e) {
 //   alert('addEventListener: Great! You are reading the heading');
 // };
+
+// Propagação de evento
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+
+// document.querySelector('.nav__link').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+
+//   // Parando a propagação de evento
+//   e.stopPropagation();
+// });
+// document.querySelector('.nav__links').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+// });
+// document.querySelector('.nav').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+// });
