@@ -177,3 +177,25 @@ console.log(h1.parentElement);
 // Selecionando irmãos
 console.log(h1.previousElementSibling);
 console.log(h1.nextElementSibling);
+
+// Componente de aba
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const contentArea = document.querySelectorAll('.operations__content');
+
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+
+  // Guard clause
+  if (!clicked) return;
+
+  // Aba ativa
+  tabs.forEach(tab => tab.classList.remove('operations__tab--active'));
+  clicked.classList.add('operations__tab--active');
+
+  // Ativar área de conteúdo
+  contentArea.forEach(ct => ct.classList.remove('operations__content--active'));
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
