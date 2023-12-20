@@ -400,3 +400,12 @@ const slider = function () {
 };
 
 slider();
+
+// Ciclo de vida de DOM Events
+document.addEventListener('DOMContentLoaded', function (e) {
+  console.log(e);
+});
+
+window.addEventListener('load', function (e) {
+  console.log(e);
+});
